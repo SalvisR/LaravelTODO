@@ -18,6 +18,7 @@ class CreateTodosTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('text');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }
