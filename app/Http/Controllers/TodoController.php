@@ -38,11 +38,15 @@ class TodoController extends Controller
 
     public function edit(Todo $todo)
     {
+        $this->authorize('update', $todo);
+
         return view('todo.edit', compact('todo'));
     }
 
     public function update(Request $request, Todo $todo)
     {
+        $this->authorize('update', $todo);
+
         $data = $request->validate([
             'title' => 'required',
             'text' => 'required',
@@ -56,6 +60,8 @@ class TodoController extends Controller
 
     public function destroy(Todo $todo)
     {
+        $this->authorize('update', $todo);
+
         $todo->delete();
         return redirect('/todo');
     }
